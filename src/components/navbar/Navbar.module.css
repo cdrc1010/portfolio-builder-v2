@@ -1,0 +1,53 @@
+.navbar {
+    width: 100%;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    background: #121212;
+}
+
+
+.navbar ul {
+    display: flex;
+    margin: 0 auto;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.title {
+    margin-right: auto;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+}
+
+.navbar button,
+.navbar a {
+    margin-left: 16px;
+}
+
+.navbar a {
+    color: #F05454;
+    text-decoration: none;
+}
+
+li {
+    color: #F05454;
+}
+
+.logout {
+    position: absolute;
+    right: 0;
+}
+
+.logout-btn {
+    background: none;
+    padding: 6px 12px;
+    border: none;
+    color: #F05454;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+}
+
