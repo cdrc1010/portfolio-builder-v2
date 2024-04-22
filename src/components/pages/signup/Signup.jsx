@@ -8,16 +8,28 @@ const Signup = () => {
   const [password, setPassword] = useState('')
   const [cPassword, setcPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
+  const [photo, setphoto] = useState('')
   const { signup, pending, error } = useSignup()
 
   const submitHandler = (e) => {
     e.preventDefault()
+    console.log('photo: ', photo)
     if (password !== cPassword) {
       return alert('password and confirm password does not match!')
     }
 
-    signup(email, password, displayName)
+    if (!photo) {
+      return alert('image is needed')
+    }
+
+    signup(email, password, displayName, photo)
   }
+
+  const imageHandler = (e) => {
+    const file = e.target.files[0]
+    console.log('file: ', file)
+    setphoto(file)
+  };
 
   return (
     <form onSubmit={submitHandler} className={styles['signup-form']}>
@@ -38,7 +50,11 @@ const Signup = () => {
         <span>Name: </span>
         <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
       </label>
-      <button className="btn">{pending ? '...': 'Signup'}</button>
+      <label>
+        Profile Picture:
+        <input type="file" onChange={imageHandler} />
+      </label>
+      <button className="btn">{pending ? '...' : 'Signup'}</button>
       {/* {pending && <button className='btn' disabled>loading</button>} */}
       {error && <p>{error}</p>}
     </form>

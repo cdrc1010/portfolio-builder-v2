@@ -1,0 +1,220 @@
+/* animation */
+@keyframes glitch {
+  0% {
+    opacity: .3;
+  }
+
+  7% {
+    opacity: 0.5;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  27% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.5;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  52% {
+    opacity: 1;
+  }
+
+  55% {
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: .4;
+  }
+
+  75% {
+    opacity: 0.75;
+  }
+
+  80% {
+    transform: none;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+/* animation */
+/* 
+section {
+  border: 1px solid green;
+  max-height: 600px;
+  padding: 50px;
+  background-color: #2c2f33;
+  color: #F05454;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+
+.profile p {
+  letter-spacing: 1px;
+  font-family: 'Courier New', Courier, monospace;
+  margin-right: 20px;
+  font-size: 20px;
+  margin-top:20px
+}
+
+.profile p:nth-child(1){
+  background: #0e0f11;
+  padding: 15px;
+  border-radius: 15px;
+} */
+
+/* .glitch {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    animation: glitch 2.5s infinite;
+} */
+
+
+
+
+/* 
+
+.imgProfile img {
+  height: 350px;
+  width: 350px;
+  border-radius: 50%;
+}
+ */
+
+
+
+
+
+
+/* ------------------------------------------------------------ */
+.profile {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  height: 80vh;
+}
+
+.sectionPicContainer {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+.sectionPicContainer img{
+  border-radius: 50%;
+  height: 400px;
+  width: 400px;
+}
+
+.sectionText {
+  align-self: center;
+  text-align: center;
+}
+
+.sectionText p {
+  font-weight: 600;
+}
+
+.sectionTextP1 {
+  text-align: center;
+}
+
+.sectionTextP2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.socialsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+
+/* --------------------------------------------- */
+/* ICONS */
+
+.icon {
+  cursor: pointer;
+  height: 2rem;
+}
+
+/* BUTTONS */
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+}
+
+.btnColor1,
+.btnColor2 {
+  border: rgb(53, 53, 53) 0.1rem solid;
+}
+
+.btnColor1:hover,
+.btnColor2:hover {
+  cursor: pointer;
+}
+
+.btnColor1,
+.btnColor2:hover {
+  background: rgb(53, 53, 53);
+  color: white;
+}
+
+.btnColor1:hover {
+  background: rgb(0, 0, 0);
+}
+
+.btnColor2 {
+  background: none;
+}
+
+.btnColor2:hover {
+  border: rgb(255, 255, 255) 0.1rem solid;
+}
+
+.btn-container {
+  gap: 1rem;
+}

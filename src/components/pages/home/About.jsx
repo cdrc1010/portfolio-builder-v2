@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './About.module.css'
 import { useFirestore } from '../../../hooks/useFirestore'
 
-const About = ({ uid, setDisplayPortfolio }) => {
+const About = ({ uid }) => {
 
     const { addDocument, response } = useFirestore('userProfile');
 
@@ -61,7 +61,6 @@ const About = ({ uid, setDisplayPortfolio }) => {
         e.preventDefault()
         console.log('it works!!!')
         addDocument({ uid, educations, skills, projects })
-        setDisplayPortfolio(true);
     }
 
     //EDUCATIONS ADDING AND EVENT HANDLING

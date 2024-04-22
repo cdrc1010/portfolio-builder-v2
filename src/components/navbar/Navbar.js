@@ -31,6 +31,7 @@ const Navbar = () => {
             <ul>
                 {renderElement()}
             </ul>
+            
         </nav>
     )
 }

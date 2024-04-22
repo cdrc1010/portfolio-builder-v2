@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { projectAuth } from "../firebaseConfig/config";
+import { projectAuth, projectStorage } from "../firebaseConfig/config";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
@@ -8,22 +8,30 @@ export const useSignup = () => {
     const [pending, setIsPending] = useState(false);
     const { dispatch } = useAuthContext();
 
-    const signup = async (email, password, displayName) => {
+    const signup = async (email, password, displayName, photoFile) => {
         setError(null)
         setIsPending(true)
 
         try {
-            const response = await projectAuth.createUserWithEmailAndPassword(email, password)
-            // console.log(response.user);
+            const response = await projectAuth.createUserWithEmailAndPassword(email, password);
 
             if (!response) {
-                throw new Error('Could not complete singup')
+                throw new Error('Could not complete signup');
             }
 
-            //adding display name 
-            await response.user.updateProfile({ displayName })
+            // Add display name 
+            await response.user.updateProfile({ displayName });
 
-            //dispatch login action
+            // Upload photo to Firebase Storage
+            if (photoFile) {
+                const storageRef = projectStorage.ref();
+                const fileRef = storageRef.child(`${response.user.uid}/profile-photo.jpg`);
+                await fileRef.put(photoFile);
+                const photoUrl = await fileRef.getDownloadURL();
+                await response.user.updateProfile({ photoURL: photoUrl });
+            }
+
+            // Dispatch login action
             dispatch({ type: 'LOGIN', payload: response.user });
 
             setIsPending(false)

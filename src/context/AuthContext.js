@@ -30,9 +30,9 @@ export const AuthContextProvider = ({ children }) => {
             dispatch({ type: 'AUTH_IS_READY', payload: user })
             unsub()
         })
+
     }, []);
 
-    console.log('AuthContext state: ', state);
 
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>

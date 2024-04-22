@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react"
 import { projectAuth } from "../firebaseConfig/config"
 import { useAuthContext } from "./useAuthContext"
+import { useHistory } from 'react-router-dom';
+
 
 export const useLogin = () => {
     const [isCancelled, setIsCancelled] = useState(false);
     const [error, setError] = useState(null);
     const [pending, setIsPending] = useState(false);
     const { dispatch } = useAuthContext();
+    const history = useHistory()
+
+    const redirectToPortfolio = (uid) => {
+        const url = `/user?${uid}`
+        return history.push(url)
+    }
 
     const login = async (email, password) => {
         setError(null);
@@ -23,8 +31,11 @@ export const useLogin = () => {
                 setIsPending(false)
                 setError(null)
             }
+            redirectToPortfolio(response.user.uid)
         } catch (error) {
-            console.log('error: ', error)
+            console.log('error23: ', error)
+            // setError(error.message)
+
             if (!isCancelled) {
                 setError(error.message)
                 setIsPending(false);
