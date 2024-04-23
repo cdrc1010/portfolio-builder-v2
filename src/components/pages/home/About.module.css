@@ -31,3 +31,10 @@
 .btnContainer button{
     margin-top: 10px;
 }
+
+select{
+    width: 100%;
+    border: none;
+    font-size:18px;
+    height: 20px;
+}

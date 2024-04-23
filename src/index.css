@@ -15,15 +15,15 @@ ul {
 }
 .btn {
   background: none;
-  border: 2px solid #F05454;
+  border: 2px solid #160707;
   padding: 6px 12px;
   border-radius: 4px;
-  color: #F05454;
+  color: #160707;
   font-weight: bold;
   cursor: pointer;
   font-size: 1em;
 }
-.btn:hover {
+/* .btn:hover {
   background: #F05454;
   color: white;
-}
+} */
