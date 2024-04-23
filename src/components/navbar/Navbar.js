@@ -10,14 +10,26 @@ const Navbar = () => {
     const { user } = useAuthContext()
     const {logout} = useLogout()
 
+    const scrollTo = (id) => {
+        const sectionId = document.getElementById(id)
+        sectionId.scrollIntoView({ behavior: 'smooth' });
+    }
+
     const renderElement = () => {
         return user ?
            ( <>
 
-                <li><button className='btn'>Home</button></li>
-                <li><button className='btn'>About</button></li>
-                <li><button className='btn'>Projects</button></li>
-                <li className={styles.logout}><button className={styles['logout-btn']} onClick={logout}>Logout</button></li>
+                <li onClick={() => {scrollTo('profile')}}>Home</li>
+                <li onClick={() => {scrollTo('about')}}>About</li>
+                <li onClick={() => {scrollTo('skills')}}>Skills</li>
+                <li onClick={() => {scrollTo('projects')}}>Projects</li>
+                <li onClick={() => {scrollTo('contact')}}>Contact</li>
+                <li onClick={logout}>Logout</li>
+
+                {/* <li><button className='btn' onClick={() => {scrollTo('about')}}>About</button></li>
+                <li><button className='btn'onClick={() => {scrollTo('skills')}}>Skills</button></li>
+                <li><button className='btn'onClick={() => {scrollTo('projects')}}>Projects</button></li>
+                <li ><button onClick={logout}>Logout</button></li> */}
             </>)
             :
            ( <>
