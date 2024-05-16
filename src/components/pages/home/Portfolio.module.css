@@ -382,6 +382,7 @@ section {
 }
 
 .skill {
+  max-width: 33%;
   width: 30%;
   text-align: center;
   border: 1px solid black;
@@ -463,8 +464,3 @@ article {
   color: rgb(100, 96, 96);
 }
 
-.navbarSection{
-  position: absolute;
-  bottom: 33%;
-  right: 31%;
-}

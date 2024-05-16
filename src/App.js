@@ -1,23 +1,26 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import Navbar from './components/navbar/Navbar'
-import Home from './components/pages/home/Home'
-import Login from './components/pages/login/Login'
-import Signup from './components/pages/signup/Signup'
-import { useAuthContext } from './hooks/useAuthContext'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/pages/home/Home";
+import Login from "./components/pages/login/Login";
+import Signup from "./components/pages/signup/Signup";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const App = () => {
-
-  const { authIsReady, user } = useAuthContext()
+  const { authIsReady, user } = useAuthContext();
   return (
     <div>
-      {authIsReady &&
+      {authIsReady && (
         <Router>
           <Navbar />
           <Switch>
-
             <Route exact path="/">
-              {user ? <Home /> : <Redirect to='/login' />}
+              {user ? <Home /> : <Redirect to="/login" />}
             </Route>
 
             <Route exact path="/signup">
@@ -28,12 +31,12 @@ const App = () => {
               {!user ? <Login /> : <Redirect to="/" />}
             </Route>
 
+            <Redirect to="/" />
           </Switch>
-
         </Router>
-      }
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
