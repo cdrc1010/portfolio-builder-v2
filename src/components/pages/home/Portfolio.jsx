@@ -324,9 +324,7 @@ const Portfolio = ({ userDetails, currentUser }) => {
                         <p><a href={linkedinProfile} target='_blank'>LinkedIn</a></p>
                     </div>
                 </div>
-                <div className={styles.navbarSection}>
                     <Navbar />
-                </div>
             </section>
 
         </>
