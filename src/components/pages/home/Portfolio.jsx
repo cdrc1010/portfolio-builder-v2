@@ -6,8 +6,8 @@ import educationImg from '../../../assets/education.png'
 import checkMark from '../../../assets/checkmark.png'
 import emailIcon from '../../../assets/email.png'
 import Navbar from '../../navbar/Navbar'
-const Portfolio = ({ userDetails, currentUser }) => {
-    const { displayName, photoURL, email } = currentUser || {}
+const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) => {
+    const { displayName, email } = currentUser || {}
     console.log('userDetails', userDetails)
     const details = userDetails[0] || []
     console.log('currentUser: ', currentUser)
@@ -29,25 +29,9 @@ const Portfolio = ({ userDetails, currentUser }) => {
 
     return (
         <>
-            {/* <section>
-
-                <div className={styles.profile}>
-                    <div className={styles.leftSide}>
-                        <p className= {styles.greetings}>Kumusta!👋 Ako nga pala si <span className={styles.glitch}>{displayName}</span> </p>
-                        <p>I am experienced Frontend Developer.</p>
-                    </div>
-                    <div className={styles.imgProfile}><img src={photoURL} alt="" /></div>
-                </div>
-            </section>
-            <section>
-                <h2>About</h2>
-            </section>
-            <section>
-                <h2>Projects</h2>
-            </section> */}
             <section id="profile" className={styles.profile}>
                 <div className={styles.sectionPicContainer}>
-                    <img src={photoURL} alt="cdrc" />
+                    <img src={profilePic} alt="cdrc" />
                 </div>
                 <div className={styles.sectionText}>
                     <p className={styles.sectionTextP1}>Hello, kumusta!👋 </p>
@@ -106,50 +90,6 @@ const Portfolio = ({ userDetails, currentUser }) => {
                             <p className={styles.year}>{education.year}</p>
                         </div>
                     </>))}
-
-                    {/* <div className={styles.education}>
-                        <img
-                            src={education}
-                            alt="Education icon"
-                            className={styles.icon}
-                        />
-                        <h3>University of Caloocan City</h3>
-                        <p>Bachelor of Science in Computer Science</p><br />
-                        <span>2000-Present</span>
-                    </div>
-
-                    <div className={styles.education}>
-                        <img
-                            src={education}
-                            alt="Education icon"
-                            className={styles.icon}
-                        />
-                        <h3>University of Caloocan City</h3>
-                        <p>Bachelor of Science in Computer Science</p><br />
-                        <span>2000-Present</span>
-                    </div>
-
-                    <div className={styles.education}>
-                        <img
-                            src={education}
-                            alt="Education icon"
-                            className={styles.icon}
-                        />
-                        <h3>University of Caloocan City</h3>
-                        <p>Bachelor of Science in Computer Science</p><br />
-                        <span>2000-Present</span>
-                    </div>
-
-                    <div className={styles.education}>
-                        <img
-                            src={education}
-                            alt="Education icon"
-                            className={styles.icon}
-                        />
-                        <h3>University of Caloocan City</h3>
-                        <p>Bachelor of Science in Computer Science</p><br />
-                        <span>2000-Present</span>
-                    </div> */}
 
                 </div>
 
@@ -241,72 +181,7 @@ const Portfolio = ({ userDetails, currentUser }) => {
                             </div>
                         </div>
                     </>))}
-                    {/* <div className={projectClassName}>
-                        <div className={styles.imageContainer}>
-                            <img src={project} alt="project" />
-                        </div>
-                        <div className={styles.projectTitle}>Project 1</div>
-                        <div className={styles.projectDescription}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore totam quas ex numquam quod debitis non, cum minus illo!</div>
-                        <div className={styles.projectButtons}>
-                            <button>Github</button>
-                            <button>Live Demo</button>
-                        </div>
-                    </div>
-                    <div className={projectClassName}>
-                        <div className={styles.imageContainer}>
-                            <img src={project} alt="project" />
-                        </div>
-                        <div className={styles.projectTitle}>Project 1</div>
-                        <div className={styles.projectDescription}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore totam quas ex numquam quod debitis non, cum minus illo!</div>
-                        <div className={styles.projectButtons}>
-                            <button>Github</button>
-                            <button>Live Demo</button>
-                        </div>
-                    </div>
-                    <div className={projectClassName}>
-                        <div className={styles.imageContainer}>
-                            <img src={project} alt="project" />
-                        </div>
-                        <div className={styles.projectTitle}>Project 1</div>
-                        <div className={styles.projectDescription}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore totam quas ex numquam quod debitis non, cum minus illo!</div>
-                        <div className={styles.projectButtons}>
-                            <button>Github</button>
-                            <button>Live Demo</button>
-                        </div>
-                    </div>
-                    <div className={projectClassName}>
-                        <div className={styles.imageContainer}>
-                            <img src={project} alt="project" />
-                        </div>
-                        <div className={styles.projectTitle}>Project 1</div>
-                        <div className={styles.projectDescription}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore totam quas ex numquam quod debitis non, cum minus illo!</div>
-                        <div className={styles.projectButtons}>
-                            <button>Github</button>
-                            <button>Live Demo</button>
-                        </div>
-                    </div>
-                    <div className={projectClassName}>
-                        <div className={styles.imageContainer}>
-                            <img src={project} alt="project" />
-                        </div>
-                        <div className={styles.projectTitle}>Project 1</div>
-                        <div className={styles.projectDescription}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore totam quas ex numquam quod debitis non, cum minus illo!</div>
-                        <div className={styles.projectButtons}>
-                            <button>Github</button>
-                            <button>Live Demo</button>
-                        </div>
-                    </div>
-                    <div className={projectClassName}>
-                        <div className={styles.imageContainer}>
-                            <img src={project} alt="project" />
-                        </div>
-                        <div className={styles.projectTitle}>Project 1</div>
-                        <div className={styles.projectDescription}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore totam quas ex numquam quod debitis non, cum minus illo!</div>
-                        <div className={styles.projectButtons}>
-                            <button>Github</button>
-                            <button>Live Demo</button>
-                        </div>
-                    </div> */}
+                   
                 </div>
 
 
@@ -324,7 +199,7 @@ const Portfolio = ({ userDetails, currentUser }) => {
                         <p><a href={linkedinProfile} target='_blank'>LinkedIn</a></p>
                     </div>
                 </div>
-                    <Navbar />
+                    <Navbar visibleInPublic={visibleInPublic}/>
             </section>
 
         </>
