@@ -15,9 +15,10 @@ const Home = ({ visibleInPublic }) => {
     userUID,
   ]);
   const { documents: doc } = useCollection("publicData", ["id", "==", userUID]);
-  const img = doc.length && doc[0].photoURL;
-  const displayPhoto = user ? user.photoURL : img;
-  console.log("doc: ", doc);
+  const publicDocument = doc.length && doc[0]
+  const documentObject = publicDocument || {}
+  const {name, photoURL} = documentObject
+  const img = user ? user.photoURL : photoURL
 
   const renderContent = () => {
     return (
@@ -26,8 +27,9 @@ const Home = ({ visibleInPublic }) => {
           <Portfolio
             userDetails={documents}
             currentUser={user}
-            profilePic={displayPhoto}
+            profilePic={img}
             visibleInPublic={visibleInPublic}
+            displayName ={name}
           />
         ) : (
           <About uid={userUID} />

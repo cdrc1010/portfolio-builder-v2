@@ -6,8 +6,9 @@ import educationImg from '../../../assets/education.png'
 import checkMark from '../../../assets/checkmark.png'
 import emailIcon from '../../../assets/email.png'
 import Navbar from '../../navbar/Navbar'
-const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) => {
-    const { displayName, email } = currentUser || {}
+const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, displayName }) => {
+    const { displayName: currentUserName, email } = currentUser || {}
+    console.log('displayName: ', displayName)
     console.log('userDetails', userDetails)
     const details = userDetails[0] || []
     console.log('currentUser: ', currentUser)
@@ -35,7 +36,7 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                 </div>
                 <div className={styles.sectionText}>
                     <p className={styles.sectionTextP1}>Hello, kumusta!👋 </p>
-                    <h1 className={styles.title}>I'm {displayName}</h1>
+                    <h1 className={styles.title}>I'm {displayName || currentUserName}</h1>
                     <p className={styles.sectionTextP2}>Frontend Developer</p>
                     <div className={styles.btnContainer}>
                         <button
@@ -77,7 +78,7 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                 </div>
 
                 <div className={styles.educations}>
-                    {educations.map((education, idx) => (<>
+                    {educations.map((education, idx) => (
                         <div className={styles.education} key={idx}>
                             <img
                                 src={educationImg}
@@ -89,7 +90,7 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                             {education.course && <p className={styles.course}>({education.course})</p>}
                             <p className={styles.year}>{education.year}</p>
                         </div>
-                    </>))}
+                    ))}
 
                 </div>
 
@@ -103,9 +104,8 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                     <div className={styles.skill}>
                         <h2>Basic</h2>
                         <div className={styles.col2}>
-                            {skills.filter(skill => skill.level === 'basic').map(skill => (
-                                <>
-                                    <article>
+                            {skills.filter(skill => skill.level === 'basic').map((skill, idx) => (
+                                    <article key={idx}>
                                         <img
                                             src={checkMark}
                                             alt="Experience icon"
@@ -116,16 +116,14 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                                             <p>{skill.level}</p>
                                         </div>
                                     </article>
-                                </>
                             ))}
                         </div>
                     </div>
                     <div className={styles.skill}>
                         <h2>Intermediate</h2>
                         <div className={styles.col2}>
-                            {skills.filter(skill => skill.level === 'intermediate').map(skill => (
-                                <>
-                                    <article>
+                            {skills.filter(skill => skill.level === 'intermediate').map((skill, idx) => (
+                                    <article key={idx}>
                                         <img
                                             src={checkMark}
                                             alt="Experience icon"
@@ -136,16 +134,14 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                                             <p>{skill.level}</p>
                                         </div>
                                     </article>
-                                </>
                             ))}
                         </div>
                     </div>
                     <div className={styles.skill}>
                         <h2>Experienced</h2>
                         <div className={styles.col2}>
-                            {skills.filter(skill => skill.level === 'experienced').map(skill => (
-                                <>
-                                    <article>
+                            {skills.filter(skill => skill.level === 'experienced').map((skill,idx) => (
+                                    <article key={idx}>
                                         <img
                                             src={checkMark}
                                             alt="Experience icon"
@@ -156,7 +152,6 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                                             <p>{skill.level}</p>
                                         </div>
                                     </article>
-                                </>
                             ))}
                         </div>
                     </div>
@@ -168,7 +163,7 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                 <h1 className={styles.title}>Projects</h1>
 
                 <div className={styles.projectList}>
-                    {projects.map((project, idx) => (<>
+                    {projects.map((project, idx) => (
                         <div className={projectClassName} key={idx}>
                             <div className={styles.imageContainer} >
                                 <img src={project.image} alt="project" />
@@ -180,7 +175,7 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic }) =>
                                 <button onClick={() => navigateTo(project.link)}>Live Demo</button>
                             </div>
                         </div>
-                    </>))}
+                    ))}
                    
                 </div>
 
