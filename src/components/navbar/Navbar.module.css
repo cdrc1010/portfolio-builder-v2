@@ -1,10 +1,10 @@
+/* Existing CSS */
 .navbar {
     width: 100%;
     padding: 20px 10px;
     box-sizing: border-box;
+    display: flex;
 }
-
-
 
 .navbar ul {
     display: flex;
@@ -23,18 +23,15 @@
 
 .navbar li a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
+
 .navbar li:hover {
     text-decoration: underline;
     text-underline-offset: 1rem;
     text-decoration-color: rgb(100, 96, 96);
     color: rgb(100, 96, 96);
-
 }
-
-
-
 
 .logout {
     position: absolute;
@@ -48,4 +45,35 @@
     font-weight: bold;
     cursor: pointer;
     font-size: 1em;
+}
+
+/* Additions for mobile responsiveness */
+@media (max-width: 768px) {
+    .hamburger {
+        font-size: 24px;
+        margin-left: 5px;
+    }
+    
+    .navbar{
+        flex-direction: column;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar li {
+        margin: 15px 10px;
+        font-size: 18px;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+
+    hr{
+        width: 100%;
+    }
+
 }

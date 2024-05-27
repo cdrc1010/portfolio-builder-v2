@@ -294,10 +294,10 @@ section {
 
 .projectMarginized {
   width: 23%;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   margin-bottom: 15px;
 }
-.projectMarginized .imageContainer{
+.projectMarginized .imageContainer {
   display: block;
   margin: 0 auto;
 }
@@ -393,7 +393,6 @@ article {
   position: relative;
 }
 
-
 .contactContainer {
   display: flex;
   justify-content: center;
@@ -439,4 +438,75 @@ article {
   text-underline-offset: 15px;
   text-decoration-color: rgb(100, 96, 96);
   color: rgb(100, 96, 96);
+}
+
+@media (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    gap: 0;
+    margin-top: 10px;
+  }
+  .sectionPicContainer {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+  .sectionPicContainer img {
+    width: 370px;
+    height: 350px;
+  }
+  .skills{
+    margin-top:350px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .sectionTextP2 {
+    font-size: 24px;
+  }
+  .introduction {
+    flex-direction: column;
+  }
+  .educations {
+    flex-direction: column;
+    margin-top: 0;
+  }
+  .education {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+  }
+
+
+  .skillsContainer {
+    flex-direction: column;
+  }
+  .skill {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .projectList {
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  .projectMarginized {
+    width: 100%;
+    margin-top:10px;
+  }
+
+  .contactContainer{
+    flex-wrap: wrap;
+    width: 90%;
+    border-radius: 5px;
+  }
+  .twoColumn a{
+    font-size: 16px;
+  }
+
+  .twoColumn img{
+    height: 35px;
+    width: 35px;
+  }
 }
