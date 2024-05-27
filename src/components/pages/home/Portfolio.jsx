@@ -7,10 +7,11 @@ import checkMark from '../../../assets/checkmark.png'
 import emailIcon from '../../../assets/email.png'
 import Navbar from '../../navbar/Navbar'
 import { motion, useInView } from 'framer-motion';
+import { useScreenSize } from '../../../hooks/useScreenSize'
 
 
 
-const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, displayName }) => {
+const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, displayName, publicEmail }) => {
     const { displayName: currentUserName, email } = currentUser || {}
 
     const details = userDetails[0] || []
@@ -19,6 +20,8 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, disp
     const emailTo = `mailto:${email}`
 
     const projectClassName = projects.length > 3 ? styles.projectMarginized : styles.project
+    const screenSize = useScreenSize();
+    const isMobile = screenSize.width <= 768
 
     const navigateTo = (link) => {
         window.open(link, '_blank');
@@ -104,7 +107,7 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, disp
                         <img src={aboutPhoto} alt="cdrc" />
                     </motion.div>
                     <motion.div className={styles.rightDescription}
-                        initial={{ opacity: 0, x: 100 }}
+                        initial={{ opacity: 0, x: isMobile ? -100 : 100 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: 'spring', stiffness: 30, duration: .5 } }}
                         viewport={{ once: true, amount: 0.5, }}
                     >{about}</motion.div>
@@ -133,6 +136,7 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, disp
 
 
             </motion.section>
+
             <section id="skills" className={styles.skills}>
                 <motion.p className={styles.sectionTextP1}
                     initial={{ opacity: 0, x: -100 }}
@@ -147,8 +151,8 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, disp
                 <div className={styles.skillsContainer}>
 
                     <motion.div className={styles.skill}
-                        initial={{ opacity: 0, x: -100 }}
-                        whileInView={{ opacity: 1, x: 0, transition: { delay: 0, duration: 0.3 } }}
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1, transition: { delay: 0, duration: 0.3 } }}
                         viewport={{ once: true, amount: 0.5 }}
                     >
                         <h2>Basic</h2>
@@ -286,12 +290,12 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, disp
                     viewport={{ once: true, amount: 0.5 }}
                 >
                     <motion.div className={styles.twoColumn}
-                        initial={{ opacity: 0, x: -200 }}
+                        initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: 'spring', stiffness: 100, duration: .5, delay: .5 } }}
                         viewport={{ once: true, amount: 0.5 }}
                     >
                         <img src={emailIcon} alt="" />
-                        <p><a href={emailTo}>{email}</a></p>
+                        <p><a href={emailTo}>{email || publicEmail}</a></p>
                     </motion.div>
                     <motion.div className={styles.twoColumn}
                         initial={{ opacity: 0, x: 200 }}

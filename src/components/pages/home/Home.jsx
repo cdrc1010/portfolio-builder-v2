@@ -17,7 +17,7 @@ const Home = ({ visibleInPublic }) => {
   const { documents: doc } = useCollection("publicData", ["id", "==", userUID]);
   const publicDocument = doc.length && doc[0]
   const documentObject = publicDocument || {}
-  const {name, photoURL} = documentObject
+  const {name, photoURL, email} = documentObject
   const img = user ? user.photoURL : photoURL
 
   const renderContent = () => {
@@ -30,6 +30,7 @@ const Home = ({ visibleInPublic }) => {
             profilePic={img}
             visibleInPublic={visibleInPublic}
             displayName ={name}
+            publicEmail = {email}
           />
         ) : (
           <About uid={userUID} />
