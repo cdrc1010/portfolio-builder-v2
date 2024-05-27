@@ -40,7 +40,7 @@ const Home = ({ visibleInPublic }) => {
 
   return (
     <div>
-      {loading && <p>Loading...</p>}
+      {/* {loading && <p>Loading...</p>} */}
       {!loading && renderContent()}
       {error && <p>Error: {error}</p>}
     </div>

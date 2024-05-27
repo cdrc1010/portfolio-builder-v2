@@ -4,6 +4,7 @@ import styles from "./Navbar.module.css";
 
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { motion } from 'framer-motion';
 
 const Navbar = ({ visibleInPublic }) => {
   const { user } = useAuthContext();
@@ -14,10 +15,23 @@ const Navbar = ({ visibleInPublic }) => {
     sectionId.scrollIntoView({ behavior: "smooth" });
   };
 
+  const publicNavbar = ["Profile", "About", "Skills", "Projects", "Contact"]
+
+  const userNavBar = publicNavbar.concat('Logout')
+  console.log('userNavBar: ', userNavBar)
+  console.log('user: ', user)
+
+  const handleNavItemClick = item => {
+    if (item === 'Logout') {
+      return logout
+    }
+    return () => { scrollTo(item.toLowerCase()) };
+  }
+
   const renderElement = () => {
-    return user || visibleInPublic ? (
+    return user ? (
       <>
-        <li
+        {/* <li
           onClick={() => {
             scrollTo("profile");
           }}
@@ -52,12 +66,17 @@ const Navbar = ({ visibleInPublic }) => {
         >
           Contact
         </li>
-        {<li onClick={logout}>Logout</li>}
-
-        {/* <li><button className='btn' onClick={() => {scrollTo('about')}}>About</button></li>
-                <li><button className='btn'onClick={() => {scrollTo('skills')}}>Skills</button></li>
-                <li><button className='btn'onClick={() => {scrollTo('projects')}}>Projects</button></li>
-                <li ><button onClick={logout}>Logout</button></li> */}
+        <li onClick={logout}>Logout</li> */}
+        {userNavBar.map((el, idx) => (
+          <motion.li onClick={handleNavItemClick(el)} key={idx}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0, transition: { delay: 0.3 * idx, duration: .2 } }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            {el}  
+          </motion.li>
+        )
+        )}
       </>
     ) : (
       <>
@@ -74,11 +93,11 @@ const Navbar = ({ visibleInPublic }) => {
 
   return (
     <nav className={styles.navbar}>
-      <ul>
+      <motion.ul initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 180, duration: 1.5 }}>
         {!visibleInPublic && renderElement()}
         {visibleInPublic && (
           <>
-            <li
+            {/* <li
               onClick={() => {
                 scrollTo("profile");
               }}
@@ -112,10 +131,19 @@ const Navbar = ({ visibleInPublic }) => {
               }}
             >
               Contact
-            </li>
+            </li> */}
+            {publicNavbar.map((el, idx) => (
+              <motion.li onClick={() => { scrollTo(el.toLowerCase()) }} key={idx}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0, transition: { delay: 0.3 * idx, duration: .2 } }}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                {el}
+              </motion.li>
+            ))}
           </>
         )}
-      </ul>
+      </motion.ul>
     </nav>
   );
 };
