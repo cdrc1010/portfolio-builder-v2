@@ -2,6 +2,17 @@ import { useEffect, useState } from "react"
 import { projectAuth } from "../firebaseConfig/config"
 import { useAuthContext } from "./useAuthContext"
 import { useHistory } from 'react-router-dom';
+import { projectFirestore } from "../firebaseConfig/config";
+
+const storeIdInNewCollection = async (collection, id, name, photoURL, email) => {
+    try {
+        const ref = projectFirestore.collection(collection);
+        const addedDocument = await ref.doc(id).set({ id, name, photoURL, email });
+        console.log("addedDocument: ", addedDocument);
+    } catch (err) {
+        console.log("error: ", err);
+    }
+};
 
 
 export const useLogin = () => {
@@ -31,6 +42,14 @@ export const useLogin = () => {
                 setIsPending(false)
                 setError(null)
             }
+            console.log('response: ', response.user)
+            storeIdInNewCollection(
+                "publicData",
+                response.user.uid,
+                response.user.displayName,
+                response.user.photoURL,
+                response.user.email,
+            );
             redirectToPortfolio(response.user.uid)
         } catch (error) {
             console.log('error23: ', error)
