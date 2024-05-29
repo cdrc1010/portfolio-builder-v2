@@ -6,7 +6,6 @@ import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { motion } from 'framer-motion';
 import { useScreenSize } from "../../hooks/useScreenSize";
-import ShareButton from "../sharedComponents/ShareButton";
 
 const Navbar = ({ visibleInPublic }) => {
   const { user } = useAuthContext();
@@ -24,7 +23,7 @@ const Navbar = ({ visibleInPublic }) => {
 
   const publicNavbar = ["Profile", "About", "Skills", "Projects", "Contact"]
 
-  const userNavBar = publicNavbar.concat('Logout', 'Share')
+  const userNavBar = publicNavbar.concat('Logout')
 
   const handleNavItemClick = item => {
     if (item === 'Logout') {
@@ -37,20 +36,15 @@ const Navbar = ({ visibleInPublic }) => {
     return user ? (
       <>
         {userNavBar.map((el, idx) => (
-          <motion.li onClick={el !== 'Share' ? handleNavItemClick(el) : undefined} key={idx}
+          <motion.li onClick={handleNavItemClick(el)} key={idx}
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0, transition: { delay: 0.3 * idx, duration: .2 } }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            {el !== 'Share' && el}
-            {el === 'Share' &&
-              <ShareButton currentUser={user} />
-
-            }
+            {el}
           </motion.li>
         )
         )}
-
       </>
     ) : (
       <>
@@ -64,18 +58,11 @@ const Navbar = ({ visibleInPublic }) => {
     );
   };
 
-  const AnimatedSpan = ({ children }) => {
-    return (
-      <motion.span initial={{ rotate: 0 }} animate={{ rotate: toggle ? 180 : -180, display: 'inline-block' }} transition={{ duration: .5 }}>
-        {children}
-      </motion.span>
-    )
-  }
+
   return (
     <nav className={styles.navbar}>
       {isMobile && <div className={styles.hamburger} onClick={() => setToggle(!toggle)}>
-        {!toggle && <AnimatedSpan>&#9776;</AnimatedSpan>}
-        {toggle && <AnimatedSpan>&#x2715;</AnimatedSpan>}
+        &#9776;
       </div>}
       {(!isMobile || toggle) && <motion.ul initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 180, duration: 1.5 }}>
         {!visibleInPublic && renderElement()}
