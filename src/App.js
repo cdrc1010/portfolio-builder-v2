@@ -38,22 +38,22 @@ const App = () => {
 
     checkIdExist();
   }, [window.location.href]);
-  
+
   return (
     <div>
       {idUrl && (
         <Router>
-          <Navbar visibleInPublic = {userExists}/>
+          <Navbar visibleInPublic={userExists} />
           <Switch>
             <Route exact path="/user/:id">
-              {userExists && <Home visibleInPublic={userExists}/>}
-              {!userExists && <Redirect to='/login'/>}
+              {userExists && <Home visibleInPublic={userExists} />}
+              {!userExists && <Redirect to='/login' />}
             </Route>
             <Route exact path="/login">
-               <Login />
+              {!user ? <Login /> : <Redirect to='/' />}
             </Route>
             <Route exact path="/signup">
-              <Signup /> 
+              <Signup />
             </Route>
           </Switch>
         </Router>
