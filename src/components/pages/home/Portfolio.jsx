@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import styles from './Portfolio.module.css'
 import github from '../../../assets/github.png'
 import linkedin from '../../../assets/linkedin.png'
@@ -6,8 +6,9 @@ import educationImg from '../../../assets/education.png'
 import checkMark from '../../../assets/checkmark.png'
 import emailIcon from '../../../assets/email.png'
 import Navbar from '../../navbar/Navbar'
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useScreenSize } from '../../../hooks/useScreenSize'
+
 
 
 const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, displayName, publicEmail }) => {
@@ -31,6 +32,12 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, disp
         sectionId.scrollIntoView({ behavior: 'smooth' });
     }
 
+    const aboutRef = useRef(null);
+    const isInView = useInView(aboutRef, { once: true });
+    useEffect(() => {
+        console.log('isInView', isInView)
+
+    }, [isInView])
 
     return (
         <>
@@ -77,10 +84,9 @@ const Portfolio = ({ userDetails, currentUser, profilePic, visibleInPublic, disp
                         />
                     </div>
                 </div>
-
             </motion.section>
 
-            <motion.section id="about" className={styles.about}>
+            <motion.section id="about" className={styles.about} ref={aboutRef}>
                 <motion.p className={styles.sectionTextP1}
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0, transition: { delay: 0.2, duration: 0.5 } }}
