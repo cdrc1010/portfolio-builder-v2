@@ -45,7 +45,6 @@ export const useFirestore = (collection) => {
 
             dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
         } catch (error) {
-            console.log(error.message)
             dispatchIfNotCancelled({ type: 'ERROR', payload: error.message })
         }
     }
@@ -57,7 +56,6 @@ export const useFirestore = (collection) => {
 
             dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' })
         } catch (error) {
-            console.log(error.message)
             dispatchIfNotCancelled({ type: 'ERROR', payload: error.message })
         }
     }

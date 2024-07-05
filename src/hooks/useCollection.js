@@ -11,7 +11,6 @@ export const useCollection = (collection, _query) => {
     useEffect(() => {
         setLoading(true)
         let ref = projectFirestore.collection(collection)
-        console.log('ref: ', ref)
 
         //if we don't use a ref --> infinite loop in useEffect
         // _query is an array and is "different" on every function call
@@ -29,7 +28,6 @@ export const useCollection = (collection, _query) => {
             setError(null)
             setLoading(false)
         }, (error => {
-            console.log(error)
             setError('could not fetch the data: ', error.message)
         }))
 

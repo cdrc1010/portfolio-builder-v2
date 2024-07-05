@@ -23,6 +23,7 @@ ul {
   font-weight: bold;
   cursor: pointer;
   font-size: 1em;
+  transition: transform .2s ease-in;
 }
 /* .btn:hover {
   background: #F05454;

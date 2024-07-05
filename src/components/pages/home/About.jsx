@@ -22,22 +22,17 @@ const About = ({ uid }) => {
     ])
 
     const [additionalDetails, setAdditionalDetails] = useState([
-        { githubProfile: "", linkedin: "", about: "", image: "", cvLink: '' }
+        { githubProfile: "", linkedin: "", about: "", image: "", cvLink: '', position: '' }
     ])
 
-    console.log('projects: ', projects)
-    console.log('additionalDetails: ', additionalDetails)
-    console.log('skills: ', skills)
+  
 
 
 
-    // console.log('skills: ', skills)
-    // console.log('projects: ', projects)
-    // console.log('educations: ', educations)
+  
 
     // SKILLS ADDING AND EVENT HANDLING
     const handleSkillChange = (index, field, value) => {
-        console.log('skill value: ', value)
         const updatedSkills = [...skills];
         updatedSkills[index][field] = value;
         setSkills(updatedSkills);
@@ -63,7 +58,6 @@ const About = ({ uid }) => {
 
 
     const fileUpload = async (photoFile, type) => {
-        console.log('photiFIle: ', photoFile)
 
         const storageRef = projectStorage.ref();
         const fileRef = storageRef.child(`${uid}/${type}/${photoFile.name}`);
@@ -94,10 +88,9 @@ const About = ({ uid }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log('it works!!!')
-        const { about, githubProfile, linkedin, image, cvLink } = additionalDetails[0] || {}
+        const { about, githubProfile, linkedin, image, cvLink, position } = additionalDetails[0] || {}
 
-        addDocument({ uid, educations, skills, projects, about, githubProfile, linkedin, image, cvLink })
+        addDocument({ uid, educations, skills, projects, about, githubProfile, linkedin, image, cvLink, position})
     }
 
     //EDUCATIONS ADDING AND EVENT HANDLING
@@ -124,7 +117,6 @@ const About = ({ uid }) => {
         const updatedAdditionalInfo = [...additionalDetails];
         updatedAdditionalInfo[index][field] = value;
         setAdditionalDetails(updatedAdditionalInfo);
-        console.log('additionalDetails: ', additionalDetails)
     }
 
     //EDUCATIONS ADDING AND EVENT HANDLING
@@ -255,6 +247,7 @@ const About = ({ uid }) => {
                     <label key={index}>
                         <input type="text" placeholder='LinkedIn Profile' value={detail.linkedin} onChange={(e) => handleAdditionalDetailsChange(index, 'linkedin', e.target.value)} />
                         <input type="text" placeholder='Github Profile' value={detail.githubProfile} onChange={(e) => handleAdditionalDetailsChange(index, 'githubProfile', e.target.value)} />
+                        <input type="text" placeholder='Position' value={detail.position} onChange={(e) => handleAdditionalDetailsChange(index, 'position', e.target.value)} />
                         <label>
                             <span>About: </span>
                             <textarea

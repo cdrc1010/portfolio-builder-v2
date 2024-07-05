@@ -10,14 +10,14 @@ const Signup = () => {
   const [displayName, setDisplayName] = useState('')
   const [photo, setphoto] = useState('')
   const { signup, pending, error } = useSignup()
+  const [position, setPosition] = useState(0);
+  const [pwdNotMatch, setPwdNotMatch] = useState()
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log('photo: ', photo)
     if (password !== cPassword) {
       return alert('password and confirm password does not match!')
     }
-
     if (!photo) {
       return alert('image is needed')
     }
@@ -27,9 +27,20 @@ const Signup = () => {
 
   const imageHandler = (e) => {
     const file = e.target.files[0]
-    console.log('file: ', file)
     setphoto(file)
   };
+
+
+  const handleMouseEnter = () => {
+    if (password !== cPassword) {
+      setPosition(position => position + (Math.random() > 0.5 ? 90 : -90));
+      setPwdNotMatch('Password and Confirm Password not match')
+    }
+    else{
+      setPwdNotMatch('')
+    }
+  };
+
 
   return (
     <form onSubmit={submitHandler} className={styles['signup-form']}>
@@ -54,9 +65,12 @@ const Signup = () => {
         Profile Picture:
         <input type="file" onChange={imageHandler} />
       </label>
-      <button className="btn">{pending ? '...' : 'Signup'}</button>
+      <div >
+      <button className="btn" onMouseEnter={handleMouseEnter}  style={{ transform: `translateX(${position}px)` }}>{pending ? '...' : 'Signup'}</button>
+      </div>
       {/* {pending && <button className='btn' disabled>loading</button>} */}
       {error && <p>{error}</p>}
+      {pwdNotMatch && <p className={styles.pwdNotMatch}>{pwdNotMatch}</p>}
     </form>
   )
 }
