@@ -14,7 +14,6 @@ const Navbar = ({ visibleInPublic }) => {
   const screenSize = useScreenSize();
   const isMobile = screenSize.width <= 768
 
-  console.log('screenSize: ', screenSize)
   const [toggle, setToggle] = useState(false)
 
   const scrollTo = (id) => {

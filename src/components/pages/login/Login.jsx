@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const { login, pending, error } = useLogin()
 
-  console.log('error1: ', error)
+
   const submitHandler = (e) => {
     e.preventDefault()
     login(email,password)
@@ -23,8 +23,9 @@ const Login = () => {
       <label>Password:
         <input type="password" onChange={(e) => setPassword(e.target.value)}/>
       </label>
-       <button className="btn">Login</button>
-      {error && <p> {error}</p>}
+      <button className="btn">{pending ? '...' : 'Login'}</button>
+       {/* <button className="btn">Logine</button> */}
+      {error && <p style={{color:'red'}}> {error}</p>}
     </form>
   )
 }

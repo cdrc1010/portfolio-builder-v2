@@ -42,7 +42,6 @@ export const useLogin = () => {
                 setIsPending(false)
                 setError(null)
             }
-            console.log('response: ', response.user)
             storeIdInNewCollection(
                 "publicData",
                 response.user.uid,
@@ -52,13 +51,14 @@ export const useLogin = () => {
             );
             redirectToPortfolio(response.user.uid)
         } catch (error) {
-            console.log('error23: ', error)
-            // setError(error.message)
+            setError(error.message)
+            setIsPending(false);
 
-            if (!isCancelled) {
-                setError(error.message)
-                setIsPending(false);
-            }
+
+            // if (!isCancelled) {
+            //     setError(error.message)
+            //     setIsPending(false);
+            // }
         }
 
     }
