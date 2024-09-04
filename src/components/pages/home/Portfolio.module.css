@@ -232,15 +232,14 @@ section {
 
 .projectList {
   display: flex;
-  justify-content: space-around;
   width: 100%;
   flex-wrap: wrap;
 }
 
 .projectMarginized {
-  width: 23%;
+  width: 30%;
+  margin: 10px auto;
   box-sizing: border-box;
-  margin-bottom: 15px;
 }
 .projectMarginized .imageContainer {
   display: block;
