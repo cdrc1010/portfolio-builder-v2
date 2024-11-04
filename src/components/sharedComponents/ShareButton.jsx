@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { StyledButton, StyledTooltip, StyledTypography } from './sharebuttonStyles';
+import { useCollection } from '../../hooks/useCollection';
 
 const ShareButton = ({ currentUser }) => {
     const [open, setOpen] = useState(false);
     const [copySuccess, setCopySuccess] = useState('');
+    const { documents } = useCollection("publicData");
+    const findPublicData = documents.find(doc => doc.id === currentUser.uid)
 
     const handleTooltipClose = () => {
         setOpen(false);
@@ -25,7 +28,10 @@ const ShareButton = ({ currentUser }) => {
 
     const tooltipContent = (
         <StyledTypography>
-            {copySuccess}
+            {!!findPublicData && copySuccess}
+            {!findPublicData && <>
+                You must relogin to share your portfolio
+            </>}
         </StyledTypography>
     )
 
